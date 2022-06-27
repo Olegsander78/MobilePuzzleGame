@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class BGParallax : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public float ParallaxRate = -3f;
+    private Camera _cam;
+
+    private void Start()
     {
-        
+        _cam = Camera.main;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        transform.position = new Vector3(_cam.transform.position.x / ParallaxRate, 0f, 0f);
     }
 }

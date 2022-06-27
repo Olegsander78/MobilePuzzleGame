@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Player Player;
+    public float Offset = 2f;
+
+    public static CameraController Instance;
+
+    private void Awake()
     {
-        
+        Instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        
+        if (Player == null) return;
+
+        if(Player.Launching == true && Player.transform.position.x >= transform.position.x - Offset)
+        {
+            transform.position = Vector3.Lerp(transform.position, new Vector3(Player.transform.position.x + Offset, 1f, -10f), Time.deltaTime * 10f);
+        }
     }
+
 }
