@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     {
         if(Launching && Rig.IsSleeping())
         {
-            //next player
+            GameManager.Instance.PlayerFinished();
             Destroy(gameObject);
         }
     }

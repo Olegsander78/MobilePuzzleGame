@@ -4,15 +4,35 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public List<GameObject> AvailablePlayers = new List<GameObject>();
+    public List<Enemy> Enemies = new List<Enemy>();
+
+    public static GameManager Instance;
+
+    private void Awake()
     {
-        
+        Instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        SpawnNewPlayer();
+    }
+
+    public void SpawnNewPlayer()
+    {
+        PlayerLauncher.Instance.SetNewPlayer(AvailablePlayers[0]);
+        AvailablePlayers.RemoveAt(0);
+    }
+
+    public void PlayerFinished()
+    {
+        SpawnNewPlayer();
+    }
+
+    public void DestroyEnemy (Enemy enemy)
+    {
+        Enemies.Remove(enemy);
+        Destroy(enemy.gameObject);
     }
 }

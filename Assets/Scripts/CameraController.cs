@@ -24,4 +24,13 @@ public class CameraController : MonoBehaviour
         }
     }
 
+    public void SetPlayer(Player newPlayer)
+    {
+        Player = newPlayer;
+        Vector3 newPos = Player.transform.position;
+        newPos.z = -10f;
+
+        transform.position = newPos;
+    }
+
 }
